@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./TableData.css";
-import "./Navbar.css";
-import "./CardListView.css";
+import Navbar from "./Navbar";
 
 const TableData = () => {
   const [data, setData] = useState([]);
@@ -118,11 +117,7 @@ const TableData = () => {
 
   return (
     <div className="container">
-      <ul className="navbar">
-        <li>Home</li>
-        <li>About</li>
-        <li>Contact</li>
-      </ul>
+      <Navbar />
       <div className="table-container">
         <h1 className="heading">Fetched Data</h1>
 
