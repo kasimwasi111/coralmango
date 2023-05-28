@@ -5,15 +5,16 @@ import Navbar from "./Navbar";
 const TableData = () => {
   const [data, setData] = useState([]);
   const [sortColumn, setSortColumn] = useState(null);
-  const [sortOrder, setSortOrder] = useState("asc");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [isFiltered, setIsFiltered] = useState(false);
+  const [sortOrder, setSortOrder] = useState("asc"); // State for sort the data
+  const [searchQuery, setSearchQuery] = useState(""); // State for search the data
+  const [isFiltered, setIsFiltered] = useState(false); // State for filtering the data
   const [isCardView, setIsCardView] = useState(false); // State for card view
 
   useEffect(() => {
     fetchData();
   }, []);
 
+  //function to fetch the data from API
   const fetchData = async () => {
     try {
       const response = await fetch("https://coralmango.com/api/react-test");
@@ -24,6 +25,7 @@ const TableData = () => {
     }
   };
 
+  //function to sort the data
   const handleSort = (column) => {
     if (column === sortColumn) {
       setSortOrder(sortOrder === "asc" ? "desc" : "asc");
@@ -33,16 +35,19 @@ const TableData = () => {
     }
   };
 
+  //function to search the data
   const handleSearch = (event) => {
     setSearchQuery(event.target.value);
     setIsFiltered(true);
   };
 
+  //function to clear the search query
   const clearSearch = () => {
     setSearchQuery("");
     setIsFiltered(false);
   };
 
+  //function to filter the data
   const filteredData = data.filter((item) =>
     item.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -58,6 +63,7 @@ const TableData = () => {
     return 0;
   });
 
+  //function to toggle between table and card view
   const toggleView = () => {
     setIsCardView(!isCardView);
   };
